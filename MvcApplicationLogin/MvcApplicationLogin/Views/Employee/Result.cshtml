@@ -1,0 +1,15 @@
+﻿@model MvcApplicationLogin.Models.Employee
+@{
+    ViewBag.Title = "Result";
+}
+
+<h2>Result</h2>
+@using (Html.BeginForm())
+{
+    <p>
+        Select Department:  @Html.DropDownList("DepartmentID", "--select--") </p><br />
+  <p>  Enter Salary  Range:</p><br />
+    <p>Min @Html.TextBox("minsal")</p><br />
+    <p> Max @Html.TextBox("maxsal")</p>
+      <p>  <input type="submit" value="Filter" /></p>
+}
