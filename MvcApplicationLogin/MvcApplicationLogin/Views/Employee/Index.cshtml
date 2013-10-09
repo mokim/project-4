@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<MvcApplicationLogin.Models.Employee>
 
 @{
+    
     ViewBag.Title = "Index";
 }
 
@@ -10,7 +11,7 @@
 
         $.ajaxSetup({ cache: false });
       
-        $("#openDialog").live("click", function (e) {
+        $("#openDialog").live("click", function (e) {           
             e.preventDefault();
             var url = $(this).attr('href');
 
@@ -47,6 +48,9 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<div id="EmployeeList"></div>
+
+
 <table>
     <tr>
         <th>

@@ -9,13 +9,15 @@ using MvcApplicationLogin.Models;
 
 namespace MvcApplicationLogin.Controllers
 {
+   
+
     public class EmployeeController : Controller
     {
         private EmployeeContext db = new EmployeeContext();
 
         //
         // GET: /Employee/
-
+ [Authorize(Roles="Admin")]
         public ActionResult Index(List<Employee> employees = null)
         {
             employees = employees == null ? db.Employees.Include(e => e.Department).ToList() : employees;
@@ -134,8 +136,7 @@ namespace MvcApplicationLogin.Controllers
             employees = db.Employees.Where(p => p.DepartmentID == employee.DepartmentID && p.Salary > minsal && p.Salary < maxsal);
             var empList = employees.ToList();
             ViewBag.DepartmentID = new SelectList(db.Departments, "DepartmentID", "DeptName", employee.DepartmentID);
-           
-                return View("Index", empList);
+                           return View("Index", empList);
                    
         }
        

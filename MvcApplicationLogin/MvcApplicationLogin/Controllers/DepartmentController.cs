@@ -9,6 +9,8 @@ using MvcApplicationLogin.Models;
 
 namespace MvcApplicationLogin.Controllers
 {
+
+     [Authorize]
     public class DepartmentController : Controller
     {
         private EmployeeContext db = new EmployeeContext();
@@ -91,14 +93,19 @@ namespace MvcApplicationLogin.Controllers
         //
         // GET: /Department/Delete/5
 
-        public ActionResult Delete(int id = 0)
+        public ActionResult Delete(int? id = null)
         {
-            Department department = db.Departments.Find(id);
-            if (department == null)
+            if (id != null)
             {
-                return HttpNotFound();
+                var department = db.Departments.Find(id);
+                if (department == null)
+                {
+                    return View(department);
+
+                }
             }
-            return View(department);
+            return HttpNotFound();
+
         }
 
         //
